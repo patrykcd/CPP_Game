@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "type": "command",
+            "name": "setup directories",
+            "program": "mkdir",
+            "args": ["-p", "debug"],
+        },
+        {
+            "dependsOn": ["setup directories"],
+            "type": "command",
+            "name": "configure",
+            "program": "cmake",
+            "args": ["../", "-DCMAKE_BUILD_TYPE=debug"],
+            "workingDir": "debug",
+        },
+        {
+            "dependsOn": ["configure"],
+            "type": "command",
+            "name": "build",
+            "program": "make",
+            "args": ["-j", "all"],
+            "workingDir": "debug",
+        },
+        {
+            "dependsOn": ["build"],
+            "type": "command",
+            "name": "run",
+            "program": "./Game",
+            "workingDir": "debug",
+        },
+    ]
+}

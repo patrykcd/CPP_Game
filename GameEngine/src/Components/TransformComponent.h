@@ -1,16 +1,24 @@
+#pragma once
+#include <memory>
 #include "Component.h"
-#include "glm/glm.hpp"
+#include "GameEngineMath.h"
 
-class TransformComponent : public Component {
-public:
-    TransformComponent();
-    TransformComponent(float x, float y);
-    TransformComponent(glm::vec2 vec2);
-    void SetPosition(glm::vec2 vec2);
-    glm::vec2 GetPosition();
-    void Update() override {};
+namespace Core::Components {
+    class TransformComponent : public Component {
+    public:
+        TransformComponent();
 
-private:
-    glm::vec2 position;
-};
+        explicit TransformComponent(glm::vec2 vec2);
+
+        void SetPosition(glm::vec2 vec2);
+
+        glm::vec2 GetPosition();
+
+        ~TransformComponent() override;
+
+    private:
+        glm::vec2 position;
+        glm::vec2 scale;
+    };
+}
 

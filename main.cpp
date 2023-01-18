@@ -1,23 +1,51 @@
-//#include "GameEngine/Components/TransformComponent.h"
 #include "GameEngine.h"
 #include "Entity.h"
 #include "Components/TransformComponent.h"
+#include "Components/ImageComponent.h"
+#include "Components/ShapeComponent.h"
+#include "Components/Shapes/RectangleShape.h"
 
-#include <iostream>
+using namespace Core;
+using namespace Core::Components::Shapes;
 
-class MyGame : public GameEngine
-{
+class MyGame : public GameEngine {
 protected:
-    void OnStart() override {
-        Entity entity;
-        entity.AddComponent<TransformComponent>(1.0f, 3.2f);
-//        entity.AddComponent<TransformComponent>(1.0f, 3.2f);
-//        entity.AddComponent<TransformComponent>(1.0f, 3.2f);
-        auto a = entity.GetComponent<TransformComponent>();
+    std::shared_ptr<TransformComponent> transformComponent1;
+    std::shared_ptr<TransformComponent> transformComponent2;
 
+    void OnStart() override {
+        auto entity1 = std::make_shared<Entity>("game object 1");
+        transformComponent1 = entity1->AddComponent<TransformComponent>(glm::vec2i(0, 50));
+        entity1->AddComponent<ShapeComponent>(
+                std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
+                glm::vec4i(255, 0, 0, 255)
+        );
+
+        auto entity2 = std::make_shared<Entity>("game object 1");
+        transformComponent2 = entity2->AddComponent<TransformComponent>(glm::vec2i(400, 300));
+        entity2->AddComponent<ShapeComponent>(
+                std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
+                glm::vec4i(0, 255, 0, 255)
+        );
+
+
+        std::shared_ptr<Scene> scene = std::make_shared<Scene>();
+        scene->AddEntity(entity1);
+        scene->AddEntity(entity2);
+        SetScene(scene);
     }
 
-    void OnUpdate() override {
+    float step = 0.f;
+
+    void OnUpdate(float deltaTime) override {
+        auto position1 = transformComponent1->GetPosition();
+        step += 1 * deltaTime;
+        position1.x = (glm::sin(step) * 100) + (640 / 2);
+        transformComponent1->SetPosition(position1);
+
+        auto position2 = transformComponent2->GetPosition();
+        position2.x = -(glm::sin(step) * 100) + (640 / 2);
+        transformComponent2->SetPosition(position2);
     }
 
     void OnEnd() override {
@@ -25,25 +53,14 @@ protected:
 
     void OnHandleEvents(SDL_Event &event) override {
         auto button = event.button;
-        if (button.button == SDL_BUTTON_LEFT){
-
-            std::cout << "x: " << button.x << "y: " << button.y << std::endl;
-
-        } else if (button.button == SDL_BUTTON_RIGHT){
-//                    std::cout << "x: " << button.x << "y: " << button.y;
+        if (button.button == SDL_BUTTON_LEFT) {
+        } else if (button.button == SDL_BUTTON_RIGHT) {
         }
     }
-
-    void OnRender(SDL_Renderer* renderer) override {
-//        SDL_RenderDrawPoint(renderer, button.x, button.y);
-//        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-//        SDL_RenderPresent(renderer);
-    }
-
-
 };
 
-int main()
-{
+int main() {
     return MyGame().Run();
 }
+
+//        auto image = entity->AddComponent<ImageComponent>("Assets/Image.jpg");
