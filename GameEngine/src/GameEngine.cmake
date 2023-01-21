@@ -1,8 +1,8 @@
 add_library(GameEngine
         ${CMAKE_CURRENT_LIST_DIR}/GameEngine.h
         ${CMAKE_CURRENT_LIST_DIR}/GameEngine.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Scene.h
-        ${CMAKE_CURRENT_LIST_DIR}/Scene.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/EntityGroup.h
+        ${CMAKE_CURRENT_LIST_DIR}/EntityGroup.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Entity.h
         ${CMAKE_CURRENT_LIST_DIR}/Entity.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Timer.h

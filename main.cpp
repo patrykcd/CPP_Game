@@ -10,28 +10,30 @@ using namespace Core::Components::Shapes;
 
 class MyGame : public GameEngine {
 protected:
+    EntityGroup scene;
+
     std::shared_ptr<TransformComponent> transformComponent1;
     std::shared_ptr<TransformComponent> transformComponent2;
 
     void OnStart() override {
-        auto entity1 = std::make_shared<Entity>("game object 1");
-        transformComponent1 = entity1->AddComponent<TransformComponent>(glm::vec2i(0, 50));
-        entity1->AddComponent<ShapeComponent>(
+        Entity entity1("game object 1");
+        transformComponent1 = entity1.AddComponent<TransformComponent>(glm::vec2i(0, 50));
+        entity1.AddComponent<ShapeComponent>(
                 std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
                 glm::vec4i(255, 0, 0, 255)
         );
 
-        auto entity2 = std::make_shared<Entity>("game object 1");
-        transformComponent2 = entity2->AddComponent<TransformComponent>(glm::vec2i(400, 300));
-        entity2->AddComponent<ShapeComponent>(
+        Entity entity2("game object 1");
+        transformComponent2 = entity2.AddComponent<TransformComponent>(glm::vec2i(400, 300));
+        entity2.AddComponent<ShapeComponent>(
                 std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
                 glm::vec4i(0, 255, 0, 255)
         );
 
 
-        std::shared_ptr<Scene> scene = std::make_shared<Scene>();
-        scene->AddEntity(entity1);
-        scene->AddEntity(entity2);
+        scene = EntityGroup();
+        scene.AddEntity(entity1);
+        scene.AddEntity(entity2);
         SetScene(scene);
     }
 

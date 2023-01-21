@@ -11,11 +11,17 @@ namespace Core {
 
     class Entity {
     public:
-        Entity(std::string &name);
+        Entity();
+
+        Entity(std::string name);
 
         Entity(const char *name);
 
         std::string GetName() const;
+
+        void SetName(std::string name);
+
+        void SetName(const char *name);
 
         template<typename T, typename... TArgs>
         std::shared_ptr<T> AddComponent(TArgs &&... args) {

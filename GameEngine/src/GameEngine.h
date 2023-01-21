@@ -2,7 +2,7 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
-#include "Scene.h"
+#include "EntityGroup.h"
 #include <memory>
 
 namespace Core {
@@ -12,7 +12,7 @@ namespace Core {
 
         int Run();
 
-        void SetScene(std::shared_ptr<Scene> scene);
+        void SetScene(EntityGroup& scene);
 
     protected:
         virtual void OnStart() {};
@@ -32,6 +32,6 @@ namespace Core {
         std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> sdlRenderer;
         bool isRunning;
 
-        std::shared_ptr<Scene> scene;
+        EntityGroup scene;
     };
 }
