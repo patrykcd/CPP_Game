@@ -5,9 +5,7 @@
 namespace Core {
     class EntityGroup {
     public:
-        void AddEntity(Entity &entity);
-
-        void AddEntity(const Entity &entity);
+        void AddEntity(const Entity& entity);
 
         void DeleteEntity(const std::string &name);
 

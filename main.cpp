@@ -9,45 +9,49 @@ using namespace Core;
 using namespace Core::Components::Shapes;
 
 class MyGame : public GameEngine {
+    Entity entityGlobal = Entity::Create("game object red"); //std::make_shared<Entity>("game object red");
+    std::shared_ptr<TransformComponent> transformComponentGlobal;
+
 protected:
-    EntityGroup scene;
-
-    std::shared_ptr<TransformComponent> transformComponent1;
-    std::shared_ptr<TransformComponent> transformComponent2;
-
     void OnStart() override {
-        Entity entity1("game object 1");
-        transformComponent1 = entity1.AddComponent<TransformComponent>(glm::vec2i(0, 50));
-        entity1.AddComponent<ShapeComponent>(
+        std::shared_ptr<EntityGroup> scene;
+        Entity entityLocal = Entity::Create("game object green"); //std::make_shared<Entity>("game object green");
+
+        entityLocal->AddComponent<TransformComponent>(glm::vec2i(0, 50));
+        entityLocal->AddComponent<ShapeComponent>(
                 std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
                 glm::vec4i(255, 0, 0, 255)
         );
 
-        Entity entity2("game object 1");
-        transformComponent2 = entity2.AddComponent<TransformComponent>(glm::vec2i(400, 300));
-        entity2.AddComponent<ShapeComponent>(
+        entityGlobal->AddComponent<TransformComponent>(glm::vec2i(400, 300));
+        entityGlobal->AddComponent<ShapeComponent>(
                 std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
                 glm::vec4i(0, 255, 0, 255)
         );
 
 
-        scene = EntityGroup();
-        scene.AddEntity(entity1);
-        scene.AddEntity(entity2);
+        scene = std::make_shared<EntityGroup>();
+        scene->AddEntity(entityLocal);
+        scene->AddEntity(entityGlobal);
         SetScene(scene);
     }
 
     float step = 0.f;
 
     void OnUpdate(float deltaTime) override {
-        auto position1 = transformComponent1->GetPosition();
-        step += 1 * deltaTime;
-        position1.x = (glm::sin(step) * 100) + (640 / 2);
-        transformComponent1->SetPosition(position1);
+        auto entityLocal = GetScene()->GetEntityByName("game object green");
+        auto transformComponentLocal = entityLocal->GetComponent<TransformComponent>();
+        auto positionLocal = transformComponentLocal->GetPosition();
+        positionLocal.x = (glm::sin(step) * 100) + (640 / 2);
+        transformComponentLocal->SetPosition(positionLocal);
 
-        auto position2 = transformComponent2->GetPosition();
-        position2.x = -(glm::sin(step) * 100) + (640 / 2);
-        transformComponent2->SetPosition(position2);
+
+        transformComponentGlobal = entityGlobal->GetComponent<TransformComponent>();
+        auto positionGlobal = transformComponentGlobal->GetPosition();
+        positionGlobal.x = -(glm::sin(step) * 100) + (640 / 2);
+        transformComponentGlobal->SetPosition(positionGlobal);
+
+        step += 1 * deltaTime;
     }
 
     void OnEnd() override {

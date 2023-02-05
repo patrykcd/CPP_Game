@@ -1,33 +1,29 @@
 #include "EntityGroup.h"
 
 namespace Core {
-    void EntityGroup::AddEntity(Entity &entity) {
+    void EntityGroup::AddEntity(const Entity& entity) {
         for (int i = 1;
              std::any_of(
                      entities.begin(),
                      entities.end(),
-                     [&](Entity &entityElement) {
-                         return entityElement.GetName() == entity.GetName();
+                     [&](const Entity& entityElement) {
+                         return entityElement->GetName() == entity->GetName();
                      });
              i++) {
-            entity.SetName(entity.GetName() + " (" + std::to_string(i) + ")");
+            entity->SetName(entity->GetName() + " (" + std::to_string(i) + ")");
         }
         entities.push_back(entity);
     }
 
-    void EntityGroup::AddEntity(const Entity &entity) {
-        AddEntity(const_cast <Entity &>(entity));
-    }
-
     void EntityGroup::DeleteEntity(const std::string &name) {
-        erase_if(entities, [&name](Entity &entityElement) { return entityElement.GetName() == name; });
+        erase_if(entities, [&name](const Entity& entityElement) { return entityElement->GetName() == name; });
     }
 
     Entity EntityGroup::GetEntityByName(const std::string &name) {
         auto result = std::find_if(
                 entities.begin(),
                 entities.end(),
-                [&name](Entity &entityElement) { return entityElement.GetName() == name; }
+                [&name](const Entity& entityElement) { return entityElement->GetName() == name; }
         );
 
         if (result != entities.end()) {
@@ -41,7 +37,7 @@ namespace Core {
         return entities.size();
     }
 
-    Entity EntityGroup::GetEntityByIndex(size_t index) {
+     Entity EntityGroup::GetEntityByIndex(size_t index) {
         return entities[index];
     }
 }

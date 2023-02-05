@@ -16,7 +16,7 @@ namespace Core::UnitTests {
         void SetUp() override {
             size_t i;
             for (i = 0; i < 5; i++) {
-                entityGroup.AddEntity(Entity("entity_" + std::to_string(i)));
+                entityGroup.AddEntity(Entity::Create("entity_" + std::to_string(i)));
             }
             entitiesCount = i;
         }
@@ -27,7 +27,7 @@ namespace Core::UnitTests {
     TEST_F(EntityGroupTest, AddEntity) {
         for (int i = 0; i < 2; i++) {
             std::string entityName = "entity_" + std::to_string(entitiesCount);
-            entityGroup.AddEntity(Entity(entityName));
+            entityGroup.AddEntity(Entity::Create(entityName));
             ++entitiesCount;
             EXPECT_EQ(entityGroup.Count(), entitiesCount);
         }
@@ -35,7 +35,7 @@ namespace Core::UnitTests {
 
         for (int i = 1; i < 3; i++) {
             std::string entityName = "entity_" + std::to_string(entitiesCount) + " (" + std::to_string(i) + ")";
-            entityGroup.AddEntity(Entity(entityName));
+            entityGroup.AddEntity(Entity::Create(entityName));
             ASSERT_NO_THROW({
                                 entityGroup.GetEntityByName(entityName);
                             });
@@ -50,7 +50,7 @@ namespace Core::UnitTests {
     TEST_F(EntityGroupTest, GetEntityByName) {
         std::string entityName = "entity_" + std::to_string(entitiesCount - 1);
         Entity entity = entityGroup.GetEntityByName(entityName);
-        EXPECT_EQ(entity.GetName(), entityName);
+        EXPECT_EQ(entity->GetName(), entityName);
     }
 
     TEST_F(EntityGroupTest, Count) {
@@ -59,6 +59,6 @@ namespace Core::UnitTests {
 
     TEST_F(EntityGroupTest, GetEntityByIndex) {
         Entity entity = entityGroup.GetEntityByIndex(0);
-        EXPECT_EQ(entity.GetName(), "entity_0");
+        EXPECT_EQ(entity->GetName(), "entity_0");
     }
 }

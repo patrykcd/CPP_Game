@@ -56,10 +56,10 @@ namespace Core {
             OnUpdate(static_cast<float>(delta.GetTicks()) / 1000.f);
             delta.Start();
 
-            for (size_t i = 0; i < scene.Count(); i++) {
-                auto entity = scene.GetEntityByIndex(i);
-                auto transformComponent = entity.GetComponent<TransformComponent>();
-                auto shapeComponent = entity.GetComponent<ShapeComponent>();
+            for (size_t i = 0; i < scene->Count(); i++) {
+                auto entity = scene->GetEntityByIndex(i);
+                auto transformComponent = entity->GetComponent<TransformComponent>();
+                auto shapeComponent = entity->GetComponent<ShapeComponent>();
                 SDL_SetRenderDrawColor(sdlRenderer.get(), 255, 0, 0, 255);
                 SDL_Rect rect;
                 auto position = transformComponent->GetPosition();
@@ -87,8 +87,12 @@ namespace Core {
         return 0;
     }
 
-    void GameEngine::SetScene(EntityGroup& scene) {
+    void GameEngine::SetScene(std::shared_ptr<EntityGroup> scene) {
         this->scene = scene;
+    }
+
+    std::shared_ptr<EntityGroup> GameEngine::GetScene() {
+        return this->scene;
     }
 
     GameEngine::~GameEngine() {

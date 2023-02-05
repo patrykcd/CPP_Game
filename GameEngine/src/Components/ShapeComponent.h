@@ -8,12 +8,12 @@ namespace Core::Components {
 
     class ShapeComponent : public Component{
     public:
-        ShapeComponent(std::shared_ptr<Shapes::BaseShape> shape, glm::vec4i color);
+        ShapeComponent(const std::shared_ptr<Shapes::BaseShape>& shape, glm::vec4i color);
         ~ShapeComponent() override;
         std::shared_ptr<Shapes::BaseShape> GetShape();
-        std::shared_ptr<Shapes::BaseShape> SetShape(std::shared_ptr<Shapes::BaseShape>);
+        void SetShape(const std::shared_ptr<Shapes::BaseShape>& shape);
         glm::vec4i GetColor();
-        glm::vec4i SetSColor(glm::vec4i color);
+        void SetColor(glm::vec4i color);
     private:
         std::shared_ptr<Shapes::BaseShape> shape;
         glm::vec4i color;
