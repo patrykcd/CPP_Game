@@ -47,9 +47,8 @@ namespace Core {
             auto result = std::find_if(
                     components.begin(),
                     components.end(),
-                    [this](Component &c) { return c.Is<T>(); });
+                    [](Component &c) { return c.Is<T>(); });
             if (result != components.end()) {
-                //return std::dynamic_pointer_cast<T>(*result);
                 return *result;
             } else {
                 throw std::runtime_error(std::string(typeid(T).name()) + " Component not found in Entity.");

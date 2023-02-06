@@ -1,5 +1,4 @@
 #pragma once
-#include <memory>
 #include "Component.h"
 #include "Shapes/BaseShape.h"
 #include <GameEngineMath.h>

@@ -9,12 +9,12 @@ using namespace Core;
 using namespace Core::Components::Shapes;
 
 class MyGame : public GameEngine {
-    Entity entityGlobal = Entity::Create("game object red"); //std::make_shared<Entity>("game object red");
+    Entity entityGlobal = Entity::Create("game object red");
     TransformComponent transformComponentGlobal;
 
 protected:
     void OnStart() override {
-        Entity entityLocal = Entity::Create("game object green"); //std::make_shared<Entity>("game object green");
+        Entity entityLocal = Entity::Create("game object green");
         entityLocal->AddComponent<TransformComponent>(glm::vec2i(0, 50));
         entityLocal->AddComponent<ShapeComponent>(
                 RectangleShape::Create(glm::vec2i(100, 100)),

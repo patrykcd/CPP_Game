@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include <memory>
 #include "Entity.h"
 namespace Core {
     class EntityGroupWrapperItem : public WrapperItem{
