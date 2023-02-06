@@ -1,7 +1,7 @@
 #include "EntityGroup.h"
 
 namespace Core {
-    void EntityGroup::AddEntity(const Entity& entity) {
+    void EntityGroupWrapperItem::AddEntity(const Entity& entity) {
         for (int i = 1;
              std::any_of(
                      entities.begin(),
@@ -15,11 +15,11 @@ namespace Core {
         entities.push_back(entity);
     }
 
-    void EntityGroup::DeleteEntity(const std::string &name) {
+    void EntityGroupWrapperItem::DeleteEntity(const std::string &name) {
         erase_if(entities, [&name](const Entity& entityElement) { return entityElement->GetName() == name; });
     }
 
-    Entity EntityGroup::GetEntityByName(const std::string &name) {
+    Entity EntityGroupWrapperItem::GetEntityByName(const std::string &name) {
         auto result = std::find_if(
                 entities.begin(),
                 entities.end(),
@@ -33,11 +33,11 @@ namespace Core {
         }
     }
 
-    size_t EntityGroup::Count() {
+    size_t EntityGroupWrapperItem::Count() {
         return entities.size();
     }
 
-     Entity EntityGroup::GetEntityByIndex(size_t index) {
+    Entity EntityGroupWrapperItem::GetEntityByIndex(size_t index) {
         return entities[index];
     }
 }

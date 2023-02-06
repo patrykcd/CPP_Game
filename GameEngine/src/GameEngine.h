@@ -12,9 +12,9 @@ namespace Core {
 
         int Run();
 
-        void SetScene(std::shared_ptr<EntityGroup> scene);
+        void SetScene(const EntityGroup& scene);
 
-        std::shared_ptr<EntityGroup> GetScene();
+        EntityGroup GetScene();
 
     protected:
         virtual void OnStart() {};
@@ -34,6 +34,6 @@ namespace Core {
         std::unique_ptr<SDL_Renderer, decltype(&SDL_DestroyRenderer)> sdlRenderer;
         bool isRunning;
 
-        std::shared_ptr<EntityGroup> scene;
+        EntityGroup scene;
     };
 }

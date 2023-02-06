@@ -3,18 +3,18 @@
 #include <string>
 
 namespace Core::Components {
-    ImageComponent::ImageComponent() {
+    ImageComponentWrapperItem::ImageComponentWrapperItem() {
     }
 
-    ImageComponent::ImageComponent(const char *_path) {
-        path = std::make_shared<std::string_view>(std::string_view(std::string(_path)));
+    ImageComponentWrapperItem::ImageComponentWrapperItem(const char *_path) {
+        path = std::string_view(std::string(_path));
     }
 
-    std::shared_ptr<std::string_view> ImageComponent::getPath() {
+    std::string_view ImageComponentWrapperItem::getPath() {
         return path;
     }
 
-    ImageComponent::~ImageComponent() {
+    ImageComponentWrapperItem::~ImageComponentWrapperItem() {
 
     }
 }

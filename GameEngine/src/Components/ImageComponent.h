@@ -4,17 +4,19 @@
 #include <string_view>
 
 namespace Core::Components {
-    class ImageComponent : public Component {
+    class ImageComponentWrapperItem : public ComponentWrapperItem {
     public:
-        ImageComponent();
+        ImageComponentWrapperItem();
 
-        ImageComponent(const char *_path);
+        ImageComponentWrapperItem(const char *_path);
 
-        std::shared_ptr<std::string_view> getPath();
+        std::string_view getPath();
 
-        ~ImageComponent() override;
+        virtual ~ImageComponentWrapperItem();
 
     private:
-        std::shared_ptr<std::string_view> path;
+        std::string_view path;
     };
+
+    using ImageComponent = Wrapper<ImageComponentWrapperItem>;
 }

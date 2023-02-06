@@ -1,7 +1,12 @@
 #pragma once
+
+#include "Wrapper.h"
+
 namespace Core::Components {
-    class Component {
+    class ComponentWrapperItem : public WrapperItem {
     public:
-        virtual ~Component() {};
+        virtual ~ComponentWrapperItem() override {};
     };
+
+    using Component = Wrapper<ComponentWrapperItem>;
 }

@@ -1,19 +1,19 @@
 #include "RectangleShape.h"
 
 namespace Core::Components::Shapes {
-    RectangleShape::RectangleShape(glm::vec2i size)  {
+    RectangleShapeWrapperItem::RectangleShapeWrapperItem(glm::vec2i size)  {
         SetSize(size);
     }
 
-    void RectangleShape::SetSize(glm::vec2i size) {
+    void RectangleShapeWrapperItem::SetSize(glm::vec2i size) {
         this->size = size;
     }
 
-    glm::vec2i RectangleShape::GetSize() {
+    glm::vec2i RectangleShapeWrapperItem::GetSize() {
         return size;
     }
 
-    RectangleShape::~RectangleShape() {
+    RectangleShapeWrapperItem::~RectangleShapeWrapperItem() {
 
     }
 

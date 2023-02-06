@@ -10,30 +10,28 @@ using namespace Core::Components::Shapes;
 
 class MyGame : public GameEngine {
     Entity entityGlobal = Entity::Create("game object red"); //std::make_shared<Entity>("game object red");
-    std::shared_ptr<TransformComponent> transformComponentGlobal;
+    TransformComponent transformComponentGlobal;
 
 protected:
     void OnStart() override {
-        std::shared_ptr<EntityGroup> scene;
         Entity entityLocal = Entity::Create("game object green"); //std::make_shared<Entity>("game object green");
-
         entityLocal->AddComponent<TransformComponent>(glm::vec2i(0, 50));
         entityLocal->AddComponent<ShapeComponent>(
-                std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
+                RectangleShape::Create(glm::vec2i(100, 100)),
                 glm::vec4i(255, 0, 0, 255)
         );
 
         entityGlobal->AddComponent<TransformComponent>(glm::vec2i(400, 300));
         entityGlobal->AddComponent<ShapeComponent>(
-                std::make_shared<RectangleShape>(glm::vec2i(100, 100)),
+                RectangleShape::Create(glm::vec2i(100, 100)),
                 glm::vec4i(0, 255, 0, 255)
         );
 
 
-        scene = std::make_shared<EntityGroup>();
+        EntityGroup scene = EntityGroup::Create();
         scene->AddEntity(entityLocal);
-        scene->AddEntity(entityGlobal);
         SetScene(scene);
+        scene->AddEntity(entityGlobal);
     }
 
     float step = 0.f;

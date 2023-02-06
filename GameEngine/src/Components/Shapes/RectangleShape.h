@@ -5,18 +5,20 @@
 #include <iostream>
 
 namespace Core::Components::Shapes {
-    class RectangleShape : public BaseShape {
+    class RectangleShapeWrapperItem : public BaseShapeWrapperItem {
     public:
-        RectangleShape(glm::vec2i size);
+        RectangleShapeWrapperItem(glm::vec2i size);
 
         void SetSize(glm::vec2i size);
 
         glm::vec2i GetSize();
 
 //        glm::vec2i GetNormalizedRectSize() override;
-        ~RectangleShape() override;
+        ~RectangleShapeWrapperItem() override;
 
     private:
         glm::vec2i size;
     };
+
+    using RectangleShape = Wrapper<RectangleShapeWrapperItem>;
 }

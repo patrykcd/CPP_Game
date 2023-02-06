@@ -1,24 +1,27 @@
 #pragma once
+
 #include <memory>
 #include "Component.h"
 #include "GameEngineMath.h"
 
 namespace Core::Components {
-    class TransformComponent : public Component {
+    class TransformComponentWrapperItem : public ComponentWrapperItem {
     public:
-        TransformComponent();
+        TransformComponentWrapperItem();
 
-        explicit TransformComponent(glm::vec2 vec2);
+        explicit TransformComponentWrapperItem(glm::vec2 vec2);
 
         void SetPosition(glm::vec2 vec2);
 
         glm::vec2 GetPosition();
 
-        ~TransformComponent() override;
+        virtual ~TransformComponentWrapperItem() override;
 
     private:
         glm::vec2 position;
         glm::vec2 scale;
     };
+
+    using TransformComponent = Wrapper<TransformComponentWrapperItem>;
 }
 

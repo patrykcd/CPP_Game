@@ -2,29 +2,27 @@
 #include <utility>
 
 namespace Core {
-    namespace Impl {
-        Entity::Entity() {
+    EntityWrapperItem::EntityWrapperItem() {
 
-        }
+    }
 
-        Entity::Entity(std::string name) {
-            SetName(std::move(name));
-        }
+    EntityWrapperItem::EntityWrapperItem(std::string name) {
+        SetName(std::move(name));
+    }
 
-        Entity::Entity(const char *name) {
-            SetName(name);
-        }
+    EntityWrapperItem::EntityWrapperItem(const char *name) {
+        SetName(name);
+    }
 
-        std::string Entity::GetName() const {
-            return name;
-        }
+    std::string EntityWrapperItem::GetName() const {
+        return name;
+    }
 
-        void Entity::SetName(std::string name) {
-            SetName(name.c_str());
-        }
+    void EntityWrapperItem::SetName(std::string name) {
+        SetName(name.c_str());
+    }
 
-        void Entity::SetName(const char *name) {
-            this->name = name;
-        }
+    void EntityWrapperItem::SetName(const char *name) {
+        this->name = name;
     }
 }

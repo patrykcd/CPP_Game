@@ -3,10 +3,12 @@
 #include "GameEngineMath.h"
 
 namespace Core::Components::Shapes {
-    class BaseShape {
+    class BaseShapeWrapperItem : public WrapperItem {
     public:
-        BaseShape();
+        BaseShapeWrapperItem();
 //        virtual glm::vec2i GetNormalizedRectSize() = 0;
-        virtual ~BaseShape();
+        virtual ~BaseShapeWrapperItem();
     };
+
+    using BaseShape = Wrapper<BaseShapeWrapperItem>;
 }

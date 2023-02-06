@@ -3,7 +3,7 @@
 #include <memory>
 #include "Entity.h"
 namespace Core {
-    class EntityGroup {
+    class EntityGroupWrapperItem : public WrapperItem{
     public:
         void AddEntity(const Entity& entity);
 
@@ -18,4 +18,6 @@ namespace Core {
     private:
         std::vector<Entity> entities;
     };
+
+    using EntityGroup = Wrapper<EntityGroupWrapperItem>;
 }

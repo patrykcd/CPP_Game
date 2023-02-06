@@ -66,7 +66,7 @@ namespace Core {
                 rect.x = static_cast<int>(position.x);
                 rect.y = static_cast<int>(position.y);
                 auto shape = shapeComponent->GetShape();
-                auto rectangleShape = std::dynamic_pointer_cast<Shapes::RectangleShape>(shape);
+                Shapes::RectangleShape rectangleShape = shape;
                 auto rectangleSize = rectangleShape->GetSize();
                 rect.w = rectangleSize.x;
                 rect.h = rectangleSize.y;
@@ -87,11 +87,11 @@ namespace Core {
         return 0;
     }
 
-    void GameEngine::SetScene(std::shared_ptr<EntityGroup> scene) {
+    void GameEngine::SetScene(const EntityGroup& scene) {
         this->scene = scene;
     }
 
-    std::shared_ptr<EntityGroup> GameEngine::GetScene() {
+    EntityGroup GameEngine::GetScene() {
         return this->scene;
     }
 

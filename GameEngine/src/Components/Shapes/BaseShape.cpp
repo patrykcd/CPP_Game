@@ -1,8 +1,8 @@
 #include "BaseShape.h"
 namespace Core::Components::Shapes {
-    BaseShape::BaseShape() {}
+    BaseShapeWrapperItem::BaseShapeWrapperItem() {}
 
-    BaseShape::~BaseShape() {
+    BaseShapeWrapperItem::~BaseShapeWrapperItem() {
 
     }
 

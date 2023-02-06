@@ -2,28 +2,28 @@
 #include "Shapes/RectangleShape.h"
 namespace Core::Components {
 //    ShapeComponent::ShapeComponent() {}
-    ShapeComponent::ShapeComponent(const std::shared_ptr<Shapes::BaseShape>& shape, glm::vec4i color) {
+    ShapeComponentWrapperItem::ShapeComponentWrapperItem(const Shapes::BaseShape& shape, glm::vec4i color) {
         SetShape(shape);
         SetColor(color);
     }
 
-    std::shared_ptr<Shapes::BaseShape> ShapeComponent::GetShape() {
+    Shapes::BaseShape ShapeComponentWrapperItem::GetShape() {
         return shape;
     }
 
-    void ShapeComponent::SetShape(const std::shared_ptr<Shapes::BaseShape>& shape) {
+    void ShapeComponentWrapperItem::SetShape(const Shapes::BaseShape& shape) {
         this->shape = shape;
     }
 
-    glm::vec4i ShapeComponent::GetColor() {
+    glm::vec4i ShapeComponentWrapperItem::GetColor() {
         return color;
     }
 
-    void ShapeComponent::SetColor(glm::vec4i color) {
+    void ShapeComponentWrapperItem::SetColor(glm::vec4i color) {
         this->color = color;
     }
 
-    ShapeComponent::~ShapeComponent() {
+    ShapeComponentWrapperItem::~ShapeComponentWrapperItem() {
 
     }
 }
