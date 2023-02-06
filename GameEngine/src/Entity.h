@@ -29,7 +29,7 @@ namespace Core {
             if (std::any_of(
                     components.begin(),
                     components.end(),
-                    [this](Component &c) { return c.Is<T>(); })) {
+                    [](Component &c) { return c.Is<T>(); })) {
                 throw std::runtime_error(
                         "Entity already contains " + std::string(typeid(newComponent).name()) + ".");
             }
@@ -39,7 +39,7 @@ namespace Core {
 
         template<typename T>
         void DeleteComponent() {
-            erase_if(components, [this](Component &c) { return c.Is<T>(); });
+            erase_if(components, [](Component &c) { return c.Is<T>(); });
         }
 
         template<typename T>
