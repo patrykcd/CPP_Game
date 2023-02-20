@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game2/android-project/app/jni/CPP_Game" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game2/cmake-build-debug-coverage/_deps/glm-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game2/cmake-build-debug-coverage/_deps/googletest-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game2/cmake-build-debug-coverage/_deps/sdl2-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game2/emcmake-build-debug/_deps/glm-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/jni/CPP_Game2/emcmake-build-debug/_deps/sdl2-src" vcs="Git" />
+  </component>
+</project>

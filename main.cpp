@@ -1,10 +1,9 @@
 #include "GameEngine.h"
-#include "Entity.h"
 #include "Components/TransformComponent.h"
+#include "Entity.h"
 #include "Components/ImageComponent.h"
 #include "Components/ShapeComponent.h"
 #include "Components/Shapes/RectangleShape.h"
-
 using namespace Core;
 using namespace Core::Components::Shapes;
 
@@ -14,6 +13,7 @@ class MyGame : public GameEngine {
 
 protected:
     void OnStart() override {
+        std::cout << "start" << std::endl;
         Entity entityLocal = Entity::Create("game object green");
         entityLocal->AddComponent<TransformComponent>(glm::vec2i(0, 50));
         entityLocal->AddComponent<ShapeComponent>(
@@ -40,14 +40,15 @@ protected:
         auto entityLocal = GetScene()->GetEntityByName("game object green");
         auto transformComponentLocal = entityLocal->GetComponent<TransformComponent>();
         auto positionLocal = transformComponentLocal->GetPosition();
-        positionLocal.x = (glm::sin(step) * 100) + (640 / 2);
+        positionLocal.x = (glm::sin(step) * 100) + (300 / 2);
         transformComponentLocal->SetPosition(positionLocal);
 
 
         transformComponentGlobal = entityGlobal->GetComponent<TransformComponent>();
         auto positionGlobal = transformComponentGlobal->GetPosition();
-        positionGlobal.x = -(glm::sin(step) * 100) + (640 / 2);
+        positionGlobal.x = -(glm::sin(step) * 100) + (300 / 2);
         transformComponentGlobal->SetPosition(positionGlobal);
+//        std::cout << positionGlobal.x << std::endl;
 
         step += 1 * deltaTime;
     }
@@ -63,8 +64,6 @@ protected:
     }
 };
 
-int main() {
+int main(int argc, char * argv[]) {
     return MyGame().Run();
 }
-
-//        auto image = entity->AddComponent<ImageComponent>("Assets/Image.jpg");

@@ -2,13 +2,24 @@ cmake_minimum_required(VERSION 3.23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(Game)
 set(CMAKE_CXX_STANDARD 20)
-
-add_executable(Game
-        ${CMAKE_CURRENT_LIST_DIR}/main.cpp)
-
+set(CMAKE_SYSTEM_NAME_ANDROID "Android")
+set(CMAKE_EXECUTABLE_NAME "main")
+if (EMSCRIPTEN)
+    set(CMAKE_EXECUTABLE_NAME "index")
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+endif ()
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/GameEngine)
-target_link_libraries(${CMAKE_PROJECT_NAME} GameEngine)
 
+
+message("CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
+if (${CMAKE_SYSTEM_NAME} STREQUAL ${CMAKE_SYSTEM_NAME_ANDROID})
+    set(CMAKE_EXECUTABLE_NAME "main")
+    add_library(${CMAKE_EXECUTABLE_NAME} SHARED main.cpp)
+else ()
+    add_executable(${CMAKE_EXECUTABLE_NAME} ${CMAKE_CURRENT_LIST_DIR}/main.cpp)
+endif ()
+
+target_link_libraries(${CMAKE_EXECUTABLE_NAME} GameEngine)
 
 file(GLOB ALL_FILES Assets/*)
 file(COPY ${ALL_FILES} DESTINATION ${CMAKE_BINARY_DIR}/Assets)
