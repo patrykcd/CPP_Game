@@ -53,29 +53,23 @@ FetchContent_MakeAvailable(sdl2  glm )
 target_link_libraries(Math
         INTERFACE
             glm
-        Components
         )
 
 target_link_libraries(GameEngine
         PUBLIC
             Components
-            Shapes
             SDL2::SDL2
 #            SDL2_image::SDL2_image
         )
 
 target_link_libraries(Shapes
         PUBLIC
-        GameEngine
-        Math
-        Components
+            Math
         )
 
 target_link_libraries(Components
         PUBLIC
-            GameEngine
             Shapes
-            Math
         )
 
 
